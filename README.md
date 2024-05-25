@@ -27,7 +27,7 @@ MsgLen(36) + ACK + MsgSrc(size_t) + MsgSeq(size_t) + target_seq_to_ack
 
 # ASAN
 ```
-cmake .. -DENABLE_ASAN=0
+cmake .. -DENABLE_ASAN=1
 ```
 The program is checked with asan.
 
