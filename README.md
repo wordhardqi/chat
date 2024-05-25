@@ -8,6 +8,7 @@ mkdir build && cmake ..
 ```
 # Chat
 ```
+export SPDLOG_LEVEL=info
 ./server port 
 ./client client_id_ingeter host port
 ```
@@ -29,3 +30,9 @@ MsgLen(36) + ACK + MsgSrc(size_t) + MsgSeq(size_t) + target_seq_to_ack
 cmake .. -DENABLE_ASAN=0
 ```
 The program is checked with asan.
+
+# Simple Test
+```
+./server 9999
+./client 66 localhost 9999 << README.md
+```

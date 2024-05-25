@@ -32,6 +32,8 @@ public:
     virtual void set_id(const size_t id) = 0;
 
     virtual size_t  get_id() =0;
+
+    virtual void close() = 0 ;
 };
 
 typedef std::shared_ptr<ChatParticipant> ChatParticipantPtr;
@@ -45,12 +47,11 @@ public:
 
     void deliver(const ChatMessage &msg);
 
+    void close();
+
+    size_t num_participants() {return participants_.size();}
 private:
     std::set<ChatParticipantPtr> participants_;
-    enum {
-        max_recent_msgs = 100
-    };
-    ChatMessageQueue recent_msgs_;
 };
 
 
@@ -67,6 +68,8 @@ public:
     void set_id(const size_t id);
 
     size_t get_id();
+
+    void close();
 
 private:
     void do_read_header();
@@ -88,9 +91,9 @@ public:
     ChatServer(boost::asio::io_context &io_context,
                const tcp::endpoint &endpoint);
 
+    void close();
 private:
     void do_accept();
-
     tcp::acceptor acceptor_;
     ChatRoom room_;
 };

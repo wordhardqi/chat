@@ -60,7 +60,7 @@ private:
     tcp::socket socket_;
     ChatMessage read_msg_;
     chat_message_queue write_msgs_;
-    message_tracker msgs_tracker_;
+    MessageTracker msgs_tracker_;
 };
 
 #endif //CHAT_CHATCLIENT_H

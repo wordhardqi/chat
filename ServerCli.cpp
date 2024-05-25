@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
         std::unique_ptr<ChatServer> server;
         tcp::endpoint endpoint(tcp::v4(), static_cast<unsigned short>(std::atoi(argv[1])));
         server = std::make_unique<ChatServer>(io_context, endpoint);
-        signals.async_wait([&io_context](boost::system::error_code /*ec*/, int /*signo*/) {
+        signals.async_wait([&](boost::system::error_code /*ec*/, int /*signo*/) {
+            server->close();
             spdlog::warn("server exits");
             io_context.stop();
         });
